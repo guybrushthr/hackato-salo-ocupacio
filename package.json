@@ -1,0 +1,28 @@
+{
+  "name": "hackato-salo-ocupacio",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "data in- and output of date with user registration",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\"",
+    "dev:tsc": "tsc --watch --preserveWatchOutput",
+    "dev:node": "node --enable-source-maps --watch dist/index.js",
+    "dev": "concurrently \"npm run dev:tsc\" \"npm run dev:node\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guybrushthr/hackato-salo-ocupacio.git"
+  },
+  "author": "Michael Riebenbauer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guybrushthr/hackato-salo-ocupacio/issues"
+  },
+  "homepage": "https://github.com/guybrushthr/hackato-salo-ocupacio#readme",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
