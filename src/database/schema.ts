@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema({
   },
   user_activity: [activitySchema],
   user_createdAt: { type: Date, immutable: true, default: () => Date.now() },
-  user_updatedAt: { type: Date },
+  user_updatedAt: { type: Date, required: false },
 });
 
 userSchema.pre("save", function (next) {

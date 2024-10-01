@@ -21,9 +21,11 @@ export const CentreCivicController = {
         });
       console.log(newUser);
       res.status(201).json(newUser);
+      return;
     } catch (error) {
       if (error instanceof Error) {
         res.status(400).send({ error: error.message });
+        return;
       }
       res.status(500).json({ error: "An unknown error occurred" });
     }
@@ -54,6 +56,29 @@ export const CentreCivicController = {
         res.status(400).send({ error: error.message });
       }
       res.status(500).json({ error: "An unknown error occurred" });
+    }
+  },
+  getUser: async (req: Request, res: Response): Promise<void> => {
+    try {
+      const userEmail: string | undefined = req.params.id;
+      let user;
+      if (userEmail) {
+        user = await CentreCivicService.getUser(userEmail);
+      } else {
+        res.status(404).json({ message: "Please provide valid nickname" });
+        return;
+      }
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(404).json({ message: "User not found" });
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).send({ error: error.message });
+      } else {
+        res.status(500).json({ error: "An unknown error occurred" });
+      }
     }
   },
 };

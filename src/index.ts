@@ -1,5 +1,6 @@
 import express from "express";
 import { CentreCivicRouter } from "./routes/CentreCivicRoutes.js";
+import { connectDB } from "./database/connect_db.js";
 
 const app = express();
 const PORT = 3000;
@@ -11,8 +12,10 @@ app.get("/test", (req, res) => {
   res.json({ message: "Test route is working!" });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
 });
 
 function multiply(a: number, b: number): number {

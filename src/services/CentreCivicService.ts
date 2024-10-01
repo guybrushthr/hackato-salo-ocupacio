@@ -4,21 +4,29 @@ import {
   PartialCentreCivicUserInterface,
 } from "./CentreCivicUserInterface.js";
 
+import { userModel, activityModel } from "../database/schema.js";
+
 export const CentreCivicService: CentreCivicServiceInterface = {
   async createUser(
-    user: CentreCivicUserInterface
+    user: Omit<
+      CentreCivicUserInterface,
+      "_id" | "user_createdAt" | "user_updatedAt"
+    >
   ): Promise<CentreCivicUserInterface> {
-    const createdUser: CentreCivicUserInterface = {
-      user_firstname: user.user_firstname,
-      user_lastname: user.user_lastname,
-      user_nickname: user.user_nickname,
-      user_age: user.user_age,
-      user_email: user.user_email,
-      user_activity: user.user_activity,
-      user_createdAt: user.user_createdAt,
-      user_updatedAt: user.user_updatedAt,
-    };
-    return createdUser;
+    const newUser = new userModel(user);
+    const createdUser = await newUser.save();
+    return createdUser.toObject({ getters: true }) as CentreCivicUserInterface;
+  },
+  async getUser(userEmail: string): Promise<CentreCivicUserInterface> {
+    try {
+      const user = await userModel.findOne({ user_email: userEmail }).exec();
+      if (user) {
+        return user.toObject({ getters: true }) as CentreCivicUserInterface;
+      }
+    } catch (error) {
+      console.error("User could not be found in DB", error);
+      throw new Error("Error fetching user");
+    }
   },
   //   async updateUser(
   //     userName: string,

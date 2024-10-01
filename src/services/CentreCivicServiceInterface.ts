@@ -9,6 +9,6 @@ export interface CentreCivicServiceInterface {
     user: string,
     updates: PartialCentreCivicUserInterface
   ): Promise<PartialCentreCivicUserInterface>;
-  getUser(): Promise<CentreCivicUserInterface>;
+  getUser(userEmail: string | undefined): Promise<CentreCivicUserInterface>;
   deleteUser(): Promise<PartialCentreCivicUserInterface>;
 }
