@@ -1,8 +1,13 @@
 import { CentreCivicServiceInterface } from "./CentreCivicServiceInterface.js";
-import { CentreCivicUserInterface } from "./CentreCivicUserInterface.js";
+import {
+  CentreCivicUserInterface,
+  PartialCentreCivicUserInterface,
+} from "./CentreCivicUserInterface.js";
 
 export const CentreCivicService: CentreCivicServiceInterface = {
-  async createUser(user: CentreCivicUserInterface) {
+  async createUser(
+    user: CentreCivicUserInterface
+  ): Promise<CentreCivicUserInterface> {
     const createdUser: CentreCivicUserInterface = {
       user_firstname: user.user_firstname,
       user_lastname: user.user_lastname,
@@ -15,4 +20,8 @@ export const CentreCivicService: CentreCivicServiceInterface = {
     };
     return createdUser;
   },
+  //   async updateUser(
+  //     userName: string,
+  //     updates: PartialCentreCivicUserInterface
+  //   ): Promise<PartialCentreCivicUserInterface> {},
 };

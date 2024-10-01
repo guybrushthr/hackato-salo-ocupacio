@@ -5,7 +5,10 @@ import {
 
 export interface CentreCivicServiceInterface {
   createUser(user: CentreCivicUserInterface): Promise<CentreCivicUserInterface>;
-  updateUser(): Promise<PartialCentreCivicUserInterface>;
+  updateUser(
+    user: string,
+    updates: PartialCentreCivicUserInterface
+  ): Promise<PartialCentreCivicUserInterface>;
   getUser(): Promise<CentreCivicUserInterface>;
   deleteUser(): Promise<PartialCentreCivicUserInterface>;
 }
