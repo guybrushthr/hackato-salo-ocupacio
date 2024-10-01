@@ -32,7 +32,8 @@ export const CentreCivicController = {
   },
   updateUser: async (req: Request, res: Response): Promise<void> => {
     try {
-      const userName: string = req.body.user_nickname;
+      const userEmail: string | undefined = req.params.id;
+      let user;
       const dataToBeUptaded: PartialCentreCivicUserInterface = {};
       if (req.body.user_firstname)
         dataToBeUptaded.user_firstname = req.body.user_firstname;
@@ -44,18 +45,27 @@ export const CentreCivicController = {
       if (req.body.user_email) dataToBeUptaded.user_email = req.body.user_email;
       if (req.body.user_activity)
         dataToBeUptaded.user_activity = req.body.user_activity;
-      const updatedUser: PartialCentreCivicUserInterface =
-        await CentreCivicService.updateUser(userName, dataToBeUptaded);
+      let updatedUser: CentreCivicUserInterface;
+      if (userEmail) {
+        updatedUser = await CentreCivicService.updateUser(
+          userEmail,
+          dataToBeUptaded
+        );
+      }
       if (updatedUser) {
         res.status(200).json(updatedUser);
+        return;
       } else {
         res.status(404).send({ error: "User not found" });
+        return;
       }
     } catch (error) {
       if (error instanceof Error) {
         res.status(400).send({ error: error.message });
+        return;
       }
       res.status(500).json({ error: "An unknown error occurred" });
+      return;
     }
   },
   getUser: async (req: Request, res: Response): Promise<void> => {
@@ -65,19 +75,46 @@ export const CentreCivicController = {
       if (userEmail) {
         user = await CentreCivicService.getUser(userEmail);
       } else {
-        res.status(404).json({ message: "Please provide valid nickname" });
+        res.status(404).json({ message: "Please provide valid email" });
         return;
       }
       if (user) {
         res.status(200).json(user);
+        return;
       } else {
         res.status(404).json({ message: "User not found" });
+        return;
       }
     } catch (error) {
       if (error instanceof Error) {
         res.status(400).send({ error: error.message });
+        return;
       } else {
         res.status(500).json({ error: "An unknown error occurred" });
+        return;
+      }
+    }
+  },
+  deleteUser: async (req: Request, res: Response): Promise<void> => {
+    try {
+      const userEmail: string | undefined = req.params.id;
+      let user;
+      if (userEmail) {
+        user = await CentreCivicService.deleteUser(userEmail);
+      } else {
+        res.status(404).json({ message: "Please provide valid email" });
+        return;
+      }
+      if (user) {
+        res.status(200).json({ message: "user successfully deleted", user });
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).send({ error: error.message });
+        return;
+      } else {
+        res.status(500).json({ error: "An unknown error occurred" });
+        return;
       }
     }
   },

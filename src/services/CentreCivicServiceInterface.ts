@@ -6,9 +6,9 @@ import {
 export interface CentreCivicServiceInterface {
   createUser(user: CentreCivicUserInterface): Promise<CentreCivicUserInterface>;
   updateUser(
-    user: string,
+    userEmail: string,
     updates: PartialCentreCivicUserInterface
-  ): Promise<PartialCentreCivicUserInterface>;
+  ): Promise<CentreCivicUserInterface | null>;
   getUser(userEmail: string | undefined): Promise<CentreCivicUserInterface>;
-  deleteUser(): Promise<PartialCentreCivicUserInterface>;
+  deleteUser(userEmail: string | undefined): Promise<CentreCivicUserInterface>;
 }
