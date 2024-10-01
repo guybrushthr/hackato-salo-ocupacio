@@ -1,11 +1,11 @@
 import {
   CentreCivicUserInterface,
-  PartialUserInterface,
+  PartialCentreCivicUserInterface,
 } from "./CentreCivicUserInterface.js";
 
 export interface CentreCivicServiceInterface {
-  createUser(): Promise<CentreCivicUserInterface>;
-  updateUser(): Promise<PartialUserInterface>;
+  createUser(user: CentreCivicUserInterface): Promise<CentreCivicUserInterface>;
+  updateUser(): Promise<PartialCentreCivicUserInterface>;
   getUser(): Promise<CentreCivicUserInterface>;
-  deleteUser(): Promise<PartialUserInterface>;
+  deleteUser(): Promise<PartialCentreCivicUserInterface>;
 }

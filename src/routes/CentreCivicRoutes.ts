@@ -1,12 +1,14 @@
 import { Router } from "express";
+import { CentreCivicController } from "../controllers/CentreCivicControllers.js";
 
 export const CentreCivicRouter = Router();
 
 // POST /appActivitats/user: Registre d'un nou usuari.
 CentreCivicRouter.post(
-  "/appActivitats/user:",
+  "/appActivitats/user",
   CentreCivicController.createUser
 );
+/*
 // PUT /appActivitats/users/:id: Actualització de les dades d'un usuari.
 CentreCivicRouter.put(
   "/appActivitats/users/:id:",
@@ -20,5 +22,5 @@ CentreCivicRouter.get(
 // DELETE /appActivitats/users/:id: Eliminació d'un usuari.
 CentreCivicRouter.delete(
   "/appActivitats/users/:id:",
-  CentreCivicController.deleteUser
+  CentreCivicController.deleteUser*/
 );
