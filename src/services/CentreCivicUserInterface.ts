@@ -1,6 +1,8 @@
 import { ActivitiesInterface } from "./CentreCivicActivityInterface.js";
+import { Types } from "mongoose";
 
 export interface CentreCivicUserInterface {
+  _id?: Types.ObjectId
   user_firstname: string;
   user_lastname: string;
   user_nickname: string;
