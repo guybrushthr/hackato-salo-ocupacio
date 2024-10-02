@@ -1,12 +1,9 @@
-import { CentreCivicServiceInterface } from "./CentreCivicServiceInterface.js";
-import {
-  CentreCivicUserInterface,
-  PartialCentreCivicUserInterface,
-} from "./CentreCivicUserInterface.js";
+import { CentreCivicUserServiceInterface } from "./CentreCivicUserServiceInterface.js";
+import { CentreCivicUserInterface } from "./CentreCivicUserInterface.js";
 
-import { userModel, activityModel } from "../database/schema.js";
+import { userModel, activityModel } from "../database/user_schema.js";
 
-export const CentreCivicService: CentreCivicServiceInterface = {
+export const CentreCivicUserService: CentreCivicUserServiceInterface = {
   async createUser(
     user: Omit<
       CentreCivicUserInterface,

@@ -1,12 +1,14 @@
 import express from "express";
-import { CentreCivicRouter } from "./routes/CentreCivicRoutes.js";
+import { CentreCivicUserRouter } from "./routes/CentreCivicUserRoutes.js";
+import { CentreCivicActivityRouter } from "./routes/CentreCivicActivityRoutes.js";
 import { connectDB } from "./database/connect_db.js";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use("/", CentreCivicRouter);
+app.use("/appActivitats", CentreCivicUserRouter);
+app.use("/appActivitats", CentreCivicActivityRouter);
 
 app.get("/test", (req, res) => {
   res.json({ message: "Test route is working!" });

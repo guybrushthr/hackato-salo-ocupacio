@@ -1,14 +1,13 @@
-import {
-  CentreCivicUserInterface,
-  PartialCentreCivicUserInterface,
-} from "./CentreCivicUserInterface.js";
+import { CentreCivicUserInterface } from "./CentreCivicUserInterface.js";
 
-export interface CentreCivicServiceInterface {
+export interface CentreCivicUserServiceInterface {
   createUser(user: CentreCivicUserInterface): Promise<CentreCivicUserInterface>;
   updateUser(
     userEmail: string,
-    updates: PartialCentreCivicUserInterface
+    updates: Partial<CentreCivicUserInterface>
   ): Promise<CentreCivicUserInterface | null>;
   getUser(userEmail: string | undefined): Promise<CentreCivicUserInterface>;
   deleteUser(userEmail: string | undefined): Promise<CentreCivicUserInterface>;
 }
+
+export interface CentreCivicActivityServiceInterface {}

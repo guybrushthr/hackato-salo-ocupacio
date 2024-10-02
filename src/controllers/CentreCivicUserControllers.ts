@@ -1,23 +1,31 @@
 import { Request, Response } from "express";
-import { CentreCivicService } from "../services/CentreCivicService.js";
-import {
-  CentreCivicUserInterface,
-  PartialCentreCivicUserInterface,
-} from "../services/CentreCivicUserInterface.js";
+import { CentreCivicUserService } from "../services/CentreCivicUserService.js";
+import { CentreCivicUserInterface } from "../services/CentreCivicUserInterface.js";
 
-export const CentreCivicController = {
+export const CentreCivicUserController = {
   createUser: async (req: Request, res: Response): Promise<void> => {
     try {
+      const {
+        user_firstname,
+        user_lastname,
+        user_nickname,
+        user_age,
+        user_email,
+        user_activity,
+        user_createdAt,
+        user_updatedAt,
+      } = req.body;
+
       const newUser: CentreCivicUserInterface =
-        await CentreCivicService.createUser({
-          user_firstname: req.body.user_firstname,
-          user_lastname: req.body.user_lastname,
-          user_nickname: req.body.user_nickname,
-          user_age: req.body.user_age,
-          user_email: req.body.user_email,
-          user_activity: req.body.user_activity,
-          user_createdAt: req.body.user_createdAt,
-          user_updatedAt: req.body.user_updatedAt,
+        await CentreCivicUserService.createUser({
+          user_firstname,
+          user_lastname,
+          user_nickname,
+          user_age,
+          user_email,
+          user_activity,
+          user_createdAt,
+          user_updatedAt,
         });
       console.log(newUser);
       res.status(201).json(newUser);
@@ -34,7 +42,7 @@ export const CentreCivicController = {
     try {
       const userEmail: string | undefined = req.params.id;
       let user;
-      const dataToBeUptaded: PartialCentreCivicUserInterface = {};
+      const dataToBeUptaded: Partial<CentreCivicUserInterface> = {};
       if (req.body.user_firstname)
         dataToBeUptaded.user_firstname = req.body.user_firstname;
       if (req.body.user_lastname)
@@ -47,7 +55,7 @@ export const CentreCivicController = {
         dataToBeUptaded.user_activity = req.body.user_activity;
       let updatedUser: CentreCivicUserInterface;
       if (userEmail) {
-        updatedUser = await CentreCivicService.updateUser(
+        updatedUser = await CentreCivicUserService.updateUser(
           userEmail,
           dataToBeUptaded
         );
@@ -73,7 +81,7 @@ export const CentreCivicController = {
       const userEmail: string | undefined = req.params.id;
       let user;
       if (userEmail) {
-        user = await CentreCivicService.getUser(userEmail);
+        user = await CentreCivicUserService.getUser(userEmail);
       } else {
         res.status(404).json({ message: "Please provide valid email" });
         return;
@@ -100,7 +108,7 @@ export const CentreCivicController = {
       const userEmail: string | undefined = req.params.id;
       let user;
       if (userEmail) {
-        user = await CentreCivicService.deleteUser(userEmail);
+        user = await CentreCivicUserService.deleteUser(userEmail);
       } else {
         res.status(404).json({ message: "Please provide valid email" });
         return;
@@ -119,3 +127,5 @@ export const CentreCivicController = {
     }
   },
 };
+
+export const CentreCivicActivityController = {};

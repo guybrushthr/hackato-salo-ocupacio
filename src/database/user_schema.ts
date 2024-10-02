@@ -1,19 +1,5 @@
 import mongoose, { Types } from "mongoose";
-
-const activitySchema = new mongoose.Schema({
-  nom: {
-    type: String,
-    required: true,
-  },
-  descripció: {
-    type: String,
-    required: true,
-  },
-  capacitat_màxima: {
-    type: Number,
-    required: true,
-  },
-});
+import { activitySchema } from "./activity_schema.js";
 
 const userSchema = new mongoose.Schema({
   _id: {
@@ -40,6 +26,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    immutable: true,
   },
   user_activity: [activitySchema],
   user_createdAt: { type: Date, immutable: true, default: () => Date.now() },
@@ -52,4 +39,3 @@ userSchema.pre("save", function (next) {
 });
 
 export const userModel = mongoose.model("Users", userSchema);
-export const activityModel = mongoose.model("Activities", activitySchema);

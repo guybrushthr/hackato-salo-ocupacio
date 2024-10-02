@@ -1,4 +1,4 @@
-import { ActivitiesInterface } from "./CentreCivicActivityInterface.js";
+import { CentreCivicActivitiesInterface } from "./CentreCivicActivityInterface.js";
 import { Types } from "mongoose";
 
 export interface CentreCivicUserInterface {
@@ -8,9 +8,7 @@ export interface CentreCivicUserInterface {
   user_nickname: string;
   user_age: number;
   user_email: string;
-  user_activity: Types.DocumentArray<ActivitiesInterface>;
+  user_activity: Types.DocumentArray<CentreCivicActivitiesInterface>;
   user_createdAt: Date;
   user_updatedAt?: Date;
 }
-
-export type PartialCentreCivicUserInterface = Partial<CentreCivicUserInterface>;

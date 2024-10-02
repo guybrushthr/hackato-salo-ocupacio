@@ -4,4 +4,4 @@ interface ActivityInterface {
   capacitat_màxima: number;
 }
 
-export type ActivitiesInterface = ActivityInterface[];
+export type CentreCivicActivityInterface = ActivityInterface[];
