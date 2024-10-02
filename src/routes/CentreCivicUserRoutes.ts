@@ -14,3 +14,5 @@ CentreCivicUserRouter.delete(
   "/users/:id",
   CentreCivicUserController.deleteUser
 );
+// Apuntar usuari a una activitat.
+// CentreCivicUserRouter.put("/users/:id/:activitat", CentreCivicUserController.signUpToActivity)

@@ -19,9 +19,3 @@ connectDB().then(() => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
 });
-
-function multiply(a: number, b: number): number {
-  return a * b;
-}
-
-console.log(multiply(2, 6));

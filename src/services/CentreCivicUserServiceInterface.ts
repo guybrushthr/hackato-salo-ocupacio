@@ -8,6 +8,10 @@ export interface CentreCivicUserServiceInterface {
   ): Promise<CentreCivicUserInterface | null>;
   getUser(userEmail: string | undefined): Promise<CentreCivicUserInterface>;
   deleteUser(userEmail: string | undefined): Promise<CentreCivicUserInterface>;
+  // signUpToActivity(
+  //   userEmail: string | undefined,
+  //   activityName: string | undefined
+  // ): Promise<void>;
 }
 
 export interface CentreCivicActivityServiceInterface {}

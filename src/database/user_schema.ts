@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     immutable: true,
   },
-  user_activity: [activitySchema],
+  user_activities: [{ type: mongoose.Schema.Types.ObjectId, ref: "Activity" }],
   user_createdAt: { type: Date, immutable: true, default: () => Date.now() },
   user_updatedAt: { type: Date, required: false },
 });

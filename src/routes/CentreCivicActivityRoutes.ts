@@ -4,7 +4,7 @@ import { CentreCivicActivityController } from "../controllers/CentreCivicActivit
 export const CentreCivicActivityRouter = Router();
 
 // Registre d'una nova activitat.
-// CentreCivicActivityController.post(
-//   "/activity",
-//   CentreCivicActivityController.createActivity
-// );
+CentreCivicActivityRouter.post(
+  "/activity",
+  CentreCivicActivityController.createActivity
+);

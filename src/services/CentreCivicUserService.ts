@@ -1,7 +1,6 @@
 import { CentreCivicUserServiceInterface } from "./CentreCivicUserServiceInterface.js";
 import { CentreCivicUserInterface } from "./CentreCivicUserInterface.js";
-
-import { userModel, activityModel } from "../database/user_schema.js";
+import { userModel } from "../database/user_schema.js";
 
 export const CentreCivicUserService: CentreCivicUserServiceInterface = {
   async createUser(
@@ -62,4 +61,13 @@ export const CentreCivicUserService: CentreCivicUserServiceInterface = {
       throw new Error("Error deleting user");
     }
   },
+  //   async signUpToActivity(userEmail: string | undefined, activityName: string | undefined): Promise<CentreCivicUserInterface> {
+  //     try {
+  //       const user = await userModel.findOne( { user_email: userEmail }).exec();
+  //       const activity = await activityModel.findOne( { activity: activityName})
+  //       if (!user && activity) {
+  //         throw new Error("User not found");
+  //       }
+  //     }
+  //   }
 };

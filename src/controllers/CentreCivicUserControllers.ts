@@ -126,6 +126,17 @@ export const CentreCivicUserController = {
       }
     }
   },
+  //   signUpToActivity: async (req: Request, res: Response): Promise<void> => {
+  //     try {
+  //       const userEmail: string | undefined = req.params.id;
+  //       const activityName: string | undefined = req.params.activitat;
+  //       let user;
+  //       if (userEmail && activityName) {
+  //         user = await CentreCivicUserService.signUpToActivity(userEmail, activityName)
+  //       }
+
+  //     }
+  //   }
 };
 
 export const CentreCivicActivityController = {};
